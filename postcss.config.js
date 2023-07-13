@@ -25,3 +25,14 @@ if (webpack.version[0] > 4) {
   delete config.parser
 }
 module.exports = config
+
+module.exports = {
+  css: {
+    modules: true
+  },
+  plugins: {
+    'postcss-px2rem': {
+      remUnit: 15
+    }
+  }
+}
