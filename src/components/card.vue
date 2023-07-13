@@ -87,17 +87,20 @@
         position: absolute;
         top: 48px;
         left: 16px;
-        width: 134px;
+        width: 138px;
         height: 20px;
         font-size: 14px;
         font-weight: 300;
         color: #666666;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .time {
         position: absolute;
         top: 48px;
-        left: 166px;
+        left: 170px;
         width: 120px;
         height: 20px;
         font-size: 14px;
@@ -126,7 +129,7 @@
         position: absolute;
         top: 109px;
         left: 16px;
-        width: 128px;
+        width: 140px;
         height: 20px;
         font-size: 14px;
         font-weight: 300;
@@ -135,24 +138,24 @@
     }
 
     .compete-font-red {
-        width: 56px;
-        height: 24px;
+        width: 60px;
+        height: 20px;
         color: #FF165D;
-        margin-right: 4px;
+        line-height: 20px;
     }
 
     .compete-font-yellow {
-        width: 56px;
-        height: 24px;
+        width: 60px;
+        height: 20px;
         color: #FF9A00;
-        margin-right: 4px;
+        line-height: 20px;
     }
 
     .compete-font-blue {
-        width: 56px;
-        height: 24px;
+        width: 60px;
+        height: 20px;
         color: #3EC1D3;
-        margin-right: 4px;
+        line-height: 20px;
     }
 
     .compete-icon {

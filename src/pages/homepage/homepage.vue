@@ -1,11 +1,11 @@
 <template>
     <div class="container">
         <!-- 主页面和用户页面 -->
-        <div class="content" v-if="currentTab==='home'">
-            <Home @showScreen="showScreenPop" />
+        <div class="content" v-show="currentTab==='home'">
+            <Home @showScreen="showScreenPop" style="overflow:hidden;" />
         </div>
-        <div class="content" v-if="currentTab==='user'">
-            <User/>
+        <div class="content" v-show="currentTab==='user'">
+            <User style="overflow: hidden;"/>
         </div>
         <ScreenPop v-if="showingScreenPop" style="z-index: 10;" @closeScreen="closeScreenPop"/>
         <!-- 底部栏 -->
@@ -62,10 +62,12 @@
         display: flex;
         flex-direction: column;
         height: 100%;
+        overflow: hidden;
     }
 
     .content {
         flex: 1;
+        overflow: hidden;
     }
 
     .tab-bar {
