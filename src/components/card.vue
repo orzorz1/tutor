@@ -126,7 +126,7 @@
         position: absolute;
         top: 109px;
         left: 16px;
-        width: 120px;
+        width: 128px;
         height: 20px;
         font-size: 14px;
         font-weight: 300;
@@ -136,21 +136,21 @@
 
     .compete-font-red {
         width: 56px;
-        height: 20px;
+        height: 24px;
         color: #FF165D;
         margin-right: 4px;
     }
 
     .compete-font-yellow {
         width: 56px;
-        height: 20px;
+        height: 24px;
         color: #FF9A00;
         margin-right: 4px;
     }
 
     .compete-font-blue {
         width: 56px;
-        height: 20px;
+        height: 24px;
         color: #3EC1D3;
         margin-right: 4px;
     }
