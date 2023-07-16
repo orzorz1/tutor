@@ -7,7 +7,7 @@
         <div class="content" v-show="currentTab==='user'">
             <User style="overflow: hidden;"/>
         </div>
-        <ScreenPop v-if="showingScreenPop" style="z-index: 10;" @closeScreen="closeScreenPop"/>
+        <ScreenPop v-if="showingScreenPop" style="z-index: 2000; overflow: hidden;" @closeScreen="closeScreenPop"/>
         <!-- 底部栏 -->
         <div class="tab-bar">
             <div @click="switchTab('home')" class="tab-item">

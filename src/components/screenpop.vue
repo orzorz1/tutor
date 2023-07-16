@@ -98,16 +98,18 @@
 <style scoped>
     .container {
         height: 100%;
+        overflow: hidden;
     }
     .shade{
         background-color: rgba(0, 0, 0, 0.5);
-        position: absolute;
+        position: fixed;
+        top: 0;
         height: 100%;
         width: 100%;
     }
     .pop{
         background-color: #fff;
-        position: absolute;
+        position: fixed;
         bottom: 0;        
         height: 726px;
         width: 100%;
