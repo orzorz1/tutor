@@ -51,7 +51,7 @@
 <style scoped>
     .card {
         height: 150px;
-        width: 381px;
+        width: 95vw;
         background-color: #ffffff;
         margin-top: 6px;
         border-radius: 16px;
@@ -61,7 +61,7 @@
     .title {
         position: absolute;
         top: 16px;
-        left: 16px;
+        left: 5%;
         width: 250px;
         height: 22px;
         font-size: 16px;
@@ -75,7 +75,7 @@
     .id {
         position: absolute;
         top: 17px;
-        right: 16px;
+        right: 5%;
         width: 59px;
         height: 20px;
         font-size: 14px;
@@ -86,7 +86,7 @@
     .position {
         position: absolute;
         top: 48px;
-        left: 16px;
+        left: 5%;
         width: 138px;
         height: 20px;
         font-size: 14px;
@@ -114,8 +114,8 @@
     .detail {
         position: absolute;
         top: 72px;
-        left: 16px;
-        width: 328px;
+        left: 5%;
+        width: 90%;
         height: 20px;
         font-size: 14px;
         font-weight: 300;
@@ -128,7 +128,7 @@
     .compete {
         position: absolute;
         top: 109px;
-        left: 16px;
+        left: 5%;
         width: 140px;
         height: 20px;
         font-size: 14px;

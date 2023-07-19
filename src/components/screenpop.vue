@@ -15,52 +15,52 @@
                 </div>
             </div>
             <div class="select">
-                <div :class="[screen.distance[0] ? 'button-active' : 'button']"><p>500m内</p></div>
-                <div :class="[screen.distance[1] ? 'button-active' : 'button']"><p>1km内</p></div>
-                <div :class="[screen.distance[2] ? 'button-active' : 'button']"><p>2km内</p></div>
+                <div :class="[screenData.distance[0] ? 'button-active' : 'button']"><p>500m内</p></div>
+                <div :class="[screenData.distance[1] ? 'button-active' : 'button']"><p>1km内</p></div>
+                <div :class="[screenData.distance[2] ? 'button-active' : 'button']"><p>2km内</p></div>
             </div>
             <div class="screen-distance">
                 <div class="distance-font">类型</div>
             </div>
             <div class="select">
-                <div :class="[screen.type[0] ? 'button-active' : 'button']"><p>不限</p></div>
-                <div :class="[screen.type[1] ? 'button-active' : 'button']"><p>短期</p></div>
-                <div :class="[screen.type[2] ? 'button-active' : 'button']"><p>长期</p></div>
+                <div :class="[screenData.type[0] ? 'button-active' : 'button']"><p>不限</p></div>
+                <div :class="[screenData.type[1] ? 'button-active' : 'button']"><p>短期</p></div>
+                <div :class="[screenData.type[2] ? 'button-active' : 'button']"><p>长期</p></div>
             </div>
             <div class="screen-distance">
                 <div class="distance-font">时薪</div>
             </div>
             <div class="select2">
-                <div :class="[screen.wage[0] ? 'button-active' : 'button']"><p>不限</p></div>
-                <div :class="[screen.wage[1] ? 'button-active' : 'button']"><p>100以下</p></div>
-                <div :class="[screen.wage[2] ? 'button-active' : 'button']"><p>101-120</p></div>
-                <div :class="[screen.wage[3] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>121-140</p></div>
-                <div :class="[screen.wage[4] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>141-160</p></div>
-                <div :class="[screen.wage[5] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>161以上</p></div>
+                <div :class="[screenData.wage[0] ? 'button-active' : 'button']"><p>不限</p></div>
+                <div :class="[screenData.wage[1] ? 'button-active' : 'button']"><p>100以下</p></div>
+                <div :class="[screenData.wage[2] ? 'button-active' : 'button']"><p>101-120</p></div>
+                <div :class="[screenData.wage[3] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>121-140</p></div>
+                <div :class="[screenData.wage[4] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>141-160</p></div>
+                <div :class="[screenData.wage[5] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>161以上</p></div>
             </div>
             <div class="screen-distance">
                 <div class="distance-font">年级</div>
             </div>
             <div class="select2">
-                <div :class="[screen.grade[0] ? 'button-active' : 'button']"><p>不限</p></div>
-                <div :class="[screen.grade[1] ? 'button-active' : 'button']"><p>100以下</p></div>
-                <div :class="[screen.grade[2] ? 'button-active' : 'button']"><p>101-120</p></div>
-                <div :class="[screen.grade[3] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>121-140</p></div>
-                <div :class="[screen.grade[4] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>141-160</p></div>
-                <div :class="[screen.grade[5] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>161以上</p></div>
+                <div :class="[screenData.grade[0] ? 'button-active' : 'button']"><p>不限</p></div>
+                <div :class="[screenData.grade[1] ? 'button-active' : 'button']"><p>100以下</p></div>
+                <div :class="[screenData.grade[2] ? 'button-active' : 'button']"><p>101-120</p></div>
+                <div :class="[screenData.grade[3] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>121-140</p></div>
+                <div :class="[screenData.grade[4] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>141-160</p></div>
+                <div :class="[screenData.grade[5] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>161以上</p></div>
             </div>
             <div class="screen-distance">
                 <div class="distance-font">科目</div>
             </div>
             <div class="select2" style="height: 116px;">
-                <div :class="[screen.subject[0] ? 'button-active' : 'button']"><p>不限</p></div>
-                <div :class="[screen.subject[1] ? 'button-active' : 'button']"><p>数学</p></div>
-                <div :class="[screen.subject[2] ? 'button-active' : 'button']"><p>语文</p></div>
-                <div :class="[screen.subject[3] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>英语</p></div>
-                <div :class="[screen.subject[4] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>物理</p></div>
-                <div :class="[screen.subject[5] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>化学</p></div>
-                <div :class="[screen.subject[6] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>政史</p></div>
-                <div :class="[screen.subject[7] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>生地</p></div>
+                <div :class="[screenData.subject[0] ? 'button-active' : 'button']"><p>不限</p></div>
+                <div :class="[screenData.subject[1] ? 'button-active' : 'button']"><p>数学</p></div>
+                <div :class="[screenData.subject[2] ? 'button-active' : 'button']"><p>语文</p></div>
+                <div :class="[screenData.subject[3] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>英语</p></div>
+                <div :class="[screenData.subject[4] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>物理</p></div>
+                <div :class="[screenData.subject[5] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>化学</p></div>
+                <div :class="[screenData.subject[6] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>政史</p></div>
+                <div :class="[screenData.subject[7] ? 'button-active' : 'button']" style="margin-top: 10px;"><p>生地</p></div>
                 <div class="button-none"></div>
             </div>
             <div class="bottom-button">
@@ -77,7 +77,7 @@
 		data() {
 			return {
                 currentPosition:"天津大学北洋园校区",
-                screen:{"distance": [true, false, false],"type": [true, false, false],
+                screenData:{"distance": [true, false, false],"type": [true, false, false],
                         "wage": [true, false, false, false, false, false],
                         "grade": [true, false, false, false, false, false],
                         "subject": [true, false, false, false, false, false, false, false],},
@@ -88,7 +88,7 @@
 		},
 		methods: {
             closeScreen() {
-                this.screen = true
+                this.screenData = true
                 this.$emit('closeScreen');
             }
 		}
@@ -106,6 +106,7 @@
         top: 0;
         height: 100%;
         width: 100%;
+        overflow: hidden;
     }
     .pop{
         background-color: #fff;
@@ -117,6 +118,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        overflow: hidden;
     }
     .top{
         margin-top: 17px;

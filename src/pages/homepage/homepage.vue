@@ -37,7 +37,7 @@
         },
         data() {
             return {
-                currentTab: 'home',
+                currentTab: 'user',
                 showingScreenPop: false,
             };
         },
@@ -75,7 +75,6 @@
         justify-content: space-around;
         align-items: center;
         height: 45px;
-        /* 根据你的需求调整 */
         position: fixed;
         box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
         left: 0;

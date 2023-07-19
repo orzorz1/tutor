@@ -57,14 +57,14 @@
                     <div class="separator"></div>
                     <div class="sort-item" @click="showScreen">
                         <div class="sort-in">
-                            <div class="sort-font" :style="{ color: screen ? '#ED8E45' : '#666666' }">筛选</div>
-                            <img v-if="screen" class="screen-icon" :src="require('@/assets/icon/screen-act.svg')">
+                            <div class="sort-font" :style="{ color: isScreen ? '#ED8E45' : '#666666' }">筛选</div>
+                            <img v-if="isScreen" class="screen-icon" :src="require('@/assets/icon/screen-act.svg')">
                             <img v-else class="screen-icon" :src="require('@/assets/icon/screen.svg')">
                         </div>
                     </div>
                 </div>
         </div>
-        <div class="cards">
+        <div class="cards" :style="cardsStyle">
             <Card v-for="item in cards" :propsData="item"/>
             <div class="block"></div>
         </div>
@@ -80,9 +80,10 @@
         data() {
             return {
                 menuButton: {},
+                windowHeight: 0,
                 position: '天津',
                 sortord: 0, //0:综合排序 1:距离升序 2:距离降序 3:薪资升序 4:薪资降序 5:竞争升序 6:竞争降序 7:时间升序 8:时间降序
-                screen: false,
+                isScreen: false,
                 cards: [{
                     title: '初中语文·长期辅导',
                     id: '123456',
@@ -143,6 +144,10 @@
             topStyle() {
                 return `height: ${this.menuButton.bottom+29}px;`
             },
+            cardsStyle() {
+                return `top: ${this.menuButton.bottom+51}px; height: ${this.windowHeight.windowHeight - this.menuButton.bottom - 106}px;`
+
+            },
             topBarStyle() {
                 return `height: ${this.menuButton.height}px; 
                 top: ${this.menuButton.top}px; 
@@ -156,8 +161,7 @@
 
         mounted() {
             this.menuButton = uni.getMenuButtonBoundingClientRect();
-            console.log(this.topBarStyle)
-
+            this.windowHeight = uni.getSystemInfoSync();
         },
 
         methods: {
@@ -192,6 +196,7 @@
             },
             showScreen() {
                 this.$emit('showScreen');
+                this.isScreen = true;
             }
         },
     };
@@ -305,19 +310,18 @@
 
     .cards {
         width: 100%;
-        height: 645px;
         position: fixed;
-        top: 130px;
         display: flex;
         flex-direction: column;
         align-items: center;
         overflow-y: scroll;
         background-color: #f9f9f9;
+        padding-bottom: env(safe-area-inset-bottom);
     }
 
     .block {
         height: 0px;
-        margin-top: 15px;
+        margin-top: 40px;
         width: 351px;
         background-color: #f9f9f9;
     }
