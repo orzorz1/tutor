@@ -37,7 +37,7 @@
         },
         data() {
             return {
-                currentTab: 'user',
+                currentTab: 'home',
                 showingScreenPop: false,
             };
         },

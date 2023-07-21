@@ -86,20 +86,31 @@
                 isScreen: false,
                 cards: [{
                     title: '初中语文·长期辅导',
-                    id: '123456',
+                    id: '123',
                     position: '津南区',
                     distance: '12222',
                     time: '两天前发布',
                     detail: '每周一次,每周一次，每次两个小时，周五 18:00-20:00',
                     compete: 2,
+                    price:100,
                 },{
-                    title: '高中数学·长期辅导',
-                    id: '1',
-                    position: '和平区',
-                    distance: '1',
-                    time: '1盎司附近爱上了解放和卢卡斯天前发布',
-                    detail: '每周一次,每周99999次，每次1000987249879个小时，周五 18:00-20:00',
-                    compete: 1,
+                    title: '初中语文·长期辅导',
+                    id: '1234',
+                    position: '津南区',
+                    distance: '12222',
+                    time: '两天前发布',
+                    detail: '每周一次,每周一次，每次两个小时，周五 18:00-20:00',
+                    compete: 2,
+                    price:100,
+                },{
+                    title: '初中语文·长期辅导',
+                    id: '12345',
+                    position: '津南区',
+                    distance: '12222',
+                    time: '两天前发布',
+                    detail: '每周一次,每周一次，每次两个小时，周五 18:00-20:00',
+                    compete: 2,
+                    price:100,
                 },{
                     title: '初中语文·长期辅导',
                     id: '123456',
@@ -108,31 +119,8 @@
                     time: '两天前发布',
                     detail: '每周一次,每周一次，每次两个小时，周五 18:00-20:00',
                     compete: 2,
-                },{
-                    title: '高中数学·长期辅导',
-                    id: '1',
-                    position: '和平区',
-                    distance: '1',
-                    time: '1盎司附近爱上了解放和卢卡斯天前发布',
-                    detail: '每周一次,每周99999次，每次1000987249879个小时，周五 18:00-20:00',
-                    compete: 1,
-                },{
-                    title: '初中语文·长期辅导',
-                    id: '123456',
-                    position: '津南区',
-                    distance: '12222',
-                    time: '两天前发布',
-                    detail: '每周一次,每周一次，每次两个小时，周五 18:00-20:00',
-                    compete: 2,
-                },{
-                    title: '高中数学·长期辅导',
-                    id: '1',
-                    position: '和平区',
-                    distance: '1',
-                    time: '1盎司附近爱上了解放和卢卡斯天前发布',
-                    detail: '每周一次,每周99999次，每次1000987249879个小时，周五 18:00-20:00',
-                    compete: 1,
-                }]
+                    price:100,
+                },]
             };
 
         },
@@ -197,7 +185,7 @@
             showScreen() {
                 this.$emit('showScreen');
                 this.isScreen = true;
-            }
+            },
         },
     };
 </script>

@@ -1,26 +1,29 @@
 <template>
-    <div class="card">
+    <div class="card" @click="goDetail(propsData.id)">
         <div class="title">{{ propsData.title }}</div>
         <div class="id">#{{ propsData.id }}</div>
         <div class="position">{{ propsData.position }}&nbsp;&nbsp;距你{{ propsData.distance }}km</div>
         <div class="time">{{ propsData.time }}</div>
         <div class="detail">上课时间：{{ propsData.detail }}</div>
         <div class="compete" v-if="propsData.compete === 0">
-          <div class="compete-font-red">竞争激烈</div>
-          <img class="compete-icon" v-for="item in 3" :src="require('@/assets/icon/compete-red.svg')" />
+            <div class="compete-font-red">竞争激烈</div>
+            <img class="compete-icon" v-for="item in 3" :src="require('@/assets/icon/compete-red.svg')" />
         </div>
         <div class="compete" v-if="propsData.compete === 1">
-          <div class="compete-font-yellow">适度竞争</div>
-          <img class="compete-icon" v-for="item in 2" :src="require('@/assets/icon/compete-yellow.svg')" />
+            <div class="compete-font-yellow">适度竞争</div>
+            <img class="compete-icon" v-for="item in 2" :src="require('@/assets/icon/compete-yellow.svg')" />
         </div>
         <div class="compete" v-if="propsData.compete === 2">
-          <div class="compete-font-blue">欢迎投递</div>
-          <img class="compete-icon" :src="require('@/assets/icon/compete-blue.svg')" />
+            <div class="compete-font-blue">欢迎投递</div>
+            <img class="compete-icon" :src="require('@/assets/icon/compete-blue.svg')" />
         </div>
-      </div>
+        <div class="price">
+            ￥<span style="font-size:24px;">{{ propsData.price }}</span>/小时
+        </div>
+    </div>
 </template>
 
-<script lang="ts">
+<script>
     import Vue from 'vue';
     export default {
         props: {
@@ -30,20 +33,18 @@
         },
         data() {
             return {
-                title: '初中语文·长期辅导',
-                id: '123456',
-                position: '津南区',
-                distance: '12222',
-                time: '两天前发布',
-                detail: '每周一次,每周一次，每次两个小时，周五 18:00-20:00',
-                compete: 2,
+
             }
         },
         onLoad() {
 
         },
         methods: {
-
+            goDetail(id) {
+                uni.navigateTo({
+                    url: `/pages/detail/detail?id=${id}`
+                })
+            }
         }
     };
 </script>
@@ -162,5 +163,16 @@
         width: 16px;
         height: 16px;
         margin-left: 4px;
+    }
+
+    .price{
+        position: absolute;
+        top: 109px;
+        right: 5%;
+        height: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #FF5000;
+        line-height: 20px;
     }
 </style>
