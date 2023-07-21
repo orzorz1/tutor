@@ -15,6 +15,7 @@
 				"disableScroll": true 
 			}
 		},
+
 		{			
 			"path": "pages/detail/detail",
 			"style": {

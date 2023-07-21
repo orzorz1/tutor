@@ -176,10 +176,12 @@ export default {
             this.$emit('closeScreen');
         },
         changeLocation() {
+            let that = this
             uni.chooseLocation({
-                // latitude: Number,
-                // longitude: Number,
+                // latitude: 38.8,
+                // longitude: 117.1,
                 success(res) {
+                    that.currentPosition = res.name
                     console.log('位置名称：' + res.name);
                     console.log('详细地址：' + res.address);
                     console.log('纬度：' + res.latitude);
