@@ -1,17 +1,17 @@
 {
 	"pages": [ 
 		{			
-			"path": "pages/editInfo/editInfo",
-			"style": {
-				"navigationBarTitleText": "编辑信息",
-				"disableScroll": true 
-			}
-		},
-		{			
 			"path": "pages/homepage/homepage",
 			"style": {
 				"navigationBarTitleText": "主页",
 				"navigationStyle": "custom",
+				"disableScroll": true 
+			}
+		},
+		{			
+			"path": "pages/editInfo/editInfo",
+			"style": {
+				"navigationBarTitleText": "编辑信息",
 				"disableScroll": true 
 			}
 		},
