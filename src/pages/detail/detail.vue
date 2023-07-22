@@ -224,7 +224,6 @@
         justify-content: center;
         align-items: center;
         margin-bottom: calc(env(safe-area-inset-bottom) + 20px);
-;
     }
 
 </style>

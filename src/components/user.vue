@@ -96,7 +96,7 @@
 						<div class="font1">经历&nbsp;·&nbsp;{{convertToChineseNumber(index)}}</div>
 						<div class="font2">{{item}}</div>
 					</div>
-					<div class="line" v-if="index != platformExperience.length-1"></div>
+					<div class="line" v-if="index != experience.length-1"></div>
 				</div>
 
 			</div>
