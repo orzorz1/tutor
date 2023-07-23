@@ -129,36 +129,38 @@
 
 <script>
 import Vue from 'vue';
-function getAddressBean(address, name = '') {
-    let regex = /^(北京市|天津市|重庆市|上海市|香港特别行政区|澳门特别行政区)/;
-    let REGION_PROVINCE = [];
-    const addressBean = {
-        PROVINCE: null,
-        DISTRICT: null,
-        CITY: null,
-        ADDRESS: null
-    };
-    function regexAddressBean(address) {
-        regex = /^(.*?[市州]|.*?地区|.*?特别行政区)(.*?[市区县])(.*?)$/g;
-        const addxress = regex.exec(address);
-        console.log(addressBean, addxress);
-        addressBean.CITY = addxress[1];
-        addressBean.DISTRICT = addxress[2];
-        addressBean.ADDRESS = addxress[3];
-        if (name != "") addressBean.ADDRESS = addressBean.ADDRESS + "(" + name + ")";
-    }
-    if (!(REGION_PROVINCE = regex.exec(address))) {
-        regex = /^(.*?(省|自治区))(.*?)$/;
-        REGION_PROVINCE = regex.exec(address);
-        console.log('qweqwe', address, REGION_PROVINCE)
-        addressBean.PROVINCE = REGION_PROVINCE[1];
-        regexAddressBean(REGION_PROVINCE[3]);
-    } else {
-        addressBean.PROVINCE = REGION_PROVINCE[1];
-        regexAddressBean(address);
-    }
-    return addressBean;
-}
+import geocoder from '@/libs/geocoder';
+
+// function getAddressBean(address, name = '') {
+//     let regex = /^(北京市|天津市|重庆市|上海市|香港特别行政区|澳门特别行政区)/;
+//     let REGION_PROVINCE = [];
+//     const addressBean = {
+//         PROVINCE: null,
+//         DISTRICT: null,
+//         CITY: null,
+//         ADDRESS: null
+//     };
+//     function regexAddressBean(address) {
+//         regex = /^(.*?[市州]|.*?地区|.*?特别行政区)(.*?[市区县])(.*?)$/g;
+//         const addxress = regex.exec(address);
+//         console.log(addressBean, addxress);
+//         addressBean.CITY = addxress[1];
+//         addressBean.DISTRICT = addxress[2];
+//         addressBean.ADDRESS = addxress[3];
+//         if (name != "") addressBean.ADDRESS = addressBean.ADDRESS + "(" + name + ")";
+//     }
+//     if (!(REGION_PROVINCE = regex.exec(address))) {
+//         regex = /^(.*?(省|自治区))(.*?)$/;
+//         REGION_PROVINCE = regex.exec(address);
+//         console.log('qweqwe', address, REGION_PROVINCE)
+//         addressBean.PROVINCE = REGION_PROVINCE[1];
+//         regexAddressBean(REGION_PROVINCE[3]);
+//     } else {
+//         addressBean.PROVINCE = REGION_PROVINCE[1];
+//         regexAddressBean(address);
+//     }
+//     return addressBean;
+// }
 export default {
     data() {
         return {
@@ -181,6 +183,12 @@ export default {
                 console.log(res)
                 console.log('当前位置的经度：' + res.longitude);
                 console.log('当前位置的纬度：' + res.latitude);
+                geocoder(res.latitude, res.longitude).then(res => {
+                    console.log(res); // 地址
+                }).catch(err => {
+                    // handle error
+                    console.log(err);
+                });
                 that.latitude = res.latitude;
                 that.longitude = res.longitude;
             },
@@ -202,11 +210,17 @@ export default {
                 longitude: that.longitude,
                 success: function (res) {
                     if (that.latitude != res.latitude || that.longitude != res.longitude) {
+                        geocoder(res.latitude, res.longitude).then(res => {
+                            console.log(res); // 地址
+                        }).catch(err => {
+                            // handle error
+                            console.log(err);
+                        });
                         console.log('位置名称：' + res.name);
                         console.log('详细地址：' + res.address);
                         console.log('纬度：' + res.latitude);
                         console.log('经度：' + res.longitude);
-                        console.log(getAddressBean(res.address, res.name));
+                        // console.log(getAddressBean(res.address, res.name));
                         that.latitude = res.latitude;
                         that.longitude = res.longitude;
                         that.currentPosition = res.name;
