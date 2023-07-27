@@ -25,6 +25,7 @@
 
 <script>
     import Vue from 'vue';
+
     export default {
         props: {
             propsData: {
@@ -35,9 +36,6 @@
             return {
 
             }
-        },
-        onLoad() {
-
         },
         methods: {
             goDetail(id) {
@@ -88,7 +86,7 @@
         position: absolute;
         top: 48px;
         left: 5%;
-        width: 138px;
+        width: 145px;
         height: 20px;
         font-size: 14px;
         font-weight: 300;

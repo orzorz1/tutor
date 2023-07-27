@@ -73,6 +73,8 @@
 
 <script>
     import Card from '@/components/card.vue';
+    import geocoder from '@/libs/geocoder';
+
     export default {
         components: {
             Card,
@@ -151,6 +153,35 @@
             this.menuButton = uni.getMenuButtonBoundingClientRect();
             this.windowHeight = uni.getSystemInfoSync();
         },
+        onReady() {
+            const that = this;
+            uni.getLocation({
+                type: 'wgs84',
+                success: function (res) {
+                    console.log(res)
+                    console.log('当前位置的经度：' + res.longitude);
+                    console.log('当前位置的纬度：' + res.latitude);
+                    geocoder(res.latitude, res.longitude).then(res => {
+                        console.log(res); // 地址
+                        console.log(res.address_component.city); // 市
+                        if(res.address_component.city){
+                            that.position = res.address_component.city;
+                        }else{
+                            that.position = "获取失败"
+                        }
+                    }).catch(err => {
+                        // handle error
+                        console.log(err);
+                        that.position = "获取失败"
+                    });
+                    that.latitude = res.latitude;
+                    that.longitude = res.longitude;
+                },
+                fail: function (err) {
+                    console.log(err)
+                }
+            });
+        },
 
         methods: {
             changeSortord(a) {
@@ -211,7 +242,6 @@
     .bar-position {
         display: flex;
         align-items: center;
-        width: 60px;
         justify-content: center;
         z-index: 1000;
     }
@@ -231,6 +261,7 @@
     .bar-search {
         height: 100%;
         flex: 1;
+        min-width: 100px;
         border-radius: 16px;
         border: 1px solid #EAE8E8;
         margin-left: 16px;

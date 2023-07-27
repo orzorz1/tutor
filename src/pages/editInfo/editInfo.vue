@@ -1,15 +1,15 @@
 <template>
-    <div class="container">
+    <div class="container" :style="sysScroll">
         <div class="avatar" @click="inputAvatar" :style="{ backgroundImage: `url(${imgPath})` }">
             <img :src="require('@/assets/icon/camera.svg')" class="update-icon">
         </div>
         <div class="card">
-            <div class="title" >
+            <div class="title">
                 <div>基本信息</div>
             </div>
             <div class="input-item">
                 <p class="input-font">姓名</p>
-                <input placeholder="真实姓名" v-model="name">
+                <input placeholder="真实姓名" v-model="name" @focus="onfocus" @blur="onblur">
             </div>
             <div class="input-item">
                 <p class="input-font">性别</p>
@@ -22,23 +22,23 @@
             </div>
             <div class="input-item">
                 <p class="input-font">手机号</p>
-                <input placeholder="真实手机号，用于订单联系" v-model="phone">
+                <input placeholder="真实手机号，用于订单联系" v-model="phone"  @focus="onfocus" @blur="onblur">
             </div>
             <div class="input-item">
                 <p class="input-font">高考分数</p>
-                <input placeholder="高考真实分数，特殊省份请在个人简述中描述" v-model="score">
+                <input placeholder="高考真实分数，特殊省份请在个人简述中描述" v-model="score"  @focus="onfocus" @blur="onblur">
             </div>
             <div class="input-item">
                 <p class="input-font">学校</p>
-                <input placeholder="学校全称，如天津大学" v-model="school">
+                <input placeholder="学校全称，如天津大学" v-model="school"  @focus="onfocus" @blur="onblur">
             </div>
             <div class="input-item">
                 <p class="input-font">专业</p>
-                <input placeholder="专业全称，如数学与应用数学" v-model="major">
+                <input placeholder="专业全称，如数学与应用数学" v-model="major"  @focus="onfocus" @blur="onblur">
             </div>
             <div class="input-item">
                 <p class="input-font">年级</p>
-                <input placeholder="年级简称，如大三、研三" v-model="grade">
+                <input placeholder="年级简称，如大三、研三" v-model="grade" @focus="onfocus" @blur="onblur">
             </div>
             <div class="input-subject">
                 <p class="input-font">教授科目</p>
@@ -53,7 +53,7 @@
             <div class="input-subject">
                 <p class="input-font">个人简述</p>
                 <textarea placeholder="用于填写补充信息，过往家教经历请在下方其他经历陈述" type="text" v-model="profile"
-                    class="textarea-profile"></textarea>
+                    class="textarea-profile" @focus="onfocus" @blur="onblur"></textarea>
             </div>
         </div>
         <div class="card">
@@ -68,7 +68,7 @@
                     </div>
                     <textarea placeholder="可以填写在其他平台的家教经历，如果有多次经历，请分段填写，并在完成每段经历后点击下方添加经历；如果没有，也可以点击右侧删除按钮删除经历"
                         type="text" v-model="experience[index]" class="textarea-profile"
-                        style="height: 60px;"></textarea>
+                        style="height: 60px;"  @focus="onfocus" @blur="onblur"></textarea>
                 </div>
                 <div class="line"></div>
             </div>
@@ -89,6 +89,7 @@
         },
         data() {
             return {
+                sysScroll: "",
                 imgPath: '',
                 name: 'a',
                 gender: "female",
@@ -105,6 +106,12 @@
             };
         },
         methods: {
+            onfocus() {
+                this.sysScroll="overflow-y:hidden;"
+            },
+            onblur() {
+                this.sysScroll=""
+            },
             genderChange(e) {
                 this.gender = e.detail.value;
             },

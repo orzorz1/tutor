@@ -129,7 +129,7 @@
         display: flex;
     }
     .position {
-        width: 138px;
+        width: 145px;
         height: 20px;
         font-size: 14px;
         font-weight: 300;
