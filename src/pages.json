@@ -16,6 +16,13 @@
 			}
 		},
 		{			
+			"path": "pages/editInfo/regist",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"disableScroll": true 
+			}
+		},
+		{			
 			"path": "pages/detail/detail",
 			"style": {
 				"navigationBarTitleText": "详情",

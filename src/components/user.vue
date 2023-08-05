@@ -1,5 +1,5 @@
 <template>
-	<div class="container">
+	<div class="container" @click="alertRegist">
 		<div class="top" :style="topStyle">
 			<div class="top-bar" :style="topBarStyle">
 				<div>个人</div>
@@ -10,7 +10,7 @@
 				<img :src="avator" class="avatar_img">
 				<div class="username_div">
 					<div class="username">{{username}}</div>
-					<img :src="require('@/assets/icon/logout.svg')" class="logout">
+					<!-- <img :src="require('@/assets/icon/logout.svg')" class="logout"> -->
 				</div>
 				<div class="reputationScore">
 					<div class="score">信誉分&ensp;{{reputationScore}}</div>
@@ -57,7 +57,7 @@
 					<div class="font2">{{basicInformation.profile}}</div>
 				</div>
 			</div>
-			<div class="platformExperience">
+			<div class="platformExperience" v-if="platformExperience.length > 0">
 				<div class="platformExperience-title">
 					<div>平台经历</div>
 				</div>
@@ -82,6 +82,10 @@
 							<div class="font1">类型</div>
 							<div class="font2">{{item.type}}</div>
 						</div>
+					</div>
+					<div class="detail-subject" v-if="item.feedback==1">
+						<div class="font1">反馈</div>
+						<div class="font2">{{item.feedback_detail}}</div>
 					</div>
 					<div class="line" v-if="index != platformExperience.length-1"></div>
 				</div>
@@ -109,6 +113,7 @@
 	export default {
 		data() {
 			return {
+				isRegist: false,
 				menuButton: {},
 				windowHeight: 0,
 				title: 'Hello11',
@@ -116,6 +121,7 @@
 				username: 'XXX',
 				reputationScore: 90,
 				basicInformation: {
+					"id": 0,
 					"gender": "男",
 					"phone": "17777777777",
 					"score": "720",
@@ -125,24 +131,20 @@
 					"subject": "数学",
 					"profile": "个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介"
 				},
-				platformExperience: [{
-					"id": "837478",
-					"subject": "数学",
-					"grade": "高中",
-					"type": "长期辅导",
-					"feedback": 3
-				}, {
+				platformExperience: [ {
 					"id": "837222",
 					"subject": "英语、数学",
 					"grade": "初中",
 					"type": "长期辅导",
-					"feedback": 0
+					"feedback": 0,
+					"feedback_detail":""
 				}],
 				experience: ["简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述",
 					"简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述"]
 			}
 		},
 		computed: {
+
 			topStyle() {
 				return `height: ${this.menuButton.top + this.menuButton.height + 10}px;`
 			},
@@ -171,27 +173,131 @@
 		mounted() {
 			this.menuButton = uni.getMenuButtonBoundingClientRect();
 			this.windowHeight = uni.getSystemInfoSync();
+			this.refresh()
+
 		},
 		methods: {
+			refresh() {
+				let that = this
+				wx.cloud.callContainer({
+					"config": {
+						"env": "prod-4goeo77t6a540242"
+					},
+					"path": "/api/user/getInfo",
+					"header": {
+						"X-WX-OPENID": getApp().globalData.openId,
+						"X-WX-SERVICE": "express-13zt",
+						"content-type": "application/json"
+					},
+					"method": "GET",
+				}).then((res) => {
+					if (res.data.statusCode==200) {
+						this.isRegist = true
+						console.log(res)
+						if (res.data.data.gender == 0) {
+							that.basicInformation.gender = '男'
+						} else {
+							that.basicInformation.gender = '女'
+						}
+						that.username = res.data.data.name
+						if(res.data.data.avatarUrl){
+							wx.cloud.getTempFileURL({
+                                fileList: [{
+                                    fileID: res.data.data.avatarUrl
+                                }]
+                            }).then(res => {
+                                console.log(res.fileList)
+                                that.avator = res.fileList[0].tempFileURL
+                            })
+						}
+						that.reputationScore = res.data.data.reputationScore
+						that.basicInformation.score = res.data.data.gaokao
+						that.basicInformation.phone = res.data.data.phone
+						that.basicInformation.school = res.data.data.school
+						that.basicInformation.major = res.data.data.major
+						that.basicInformation.grade = res.data.data.grade
+						that.basicInformation.subject = res.data.data.subjects
+						that.basicInformation.profile = res.data.data.profile
+						that.experience = res.data.data.experience
+					} else {
+						this.isRegist = false
+					}
+				})
+				wx.cloud.callContainer({
+					"config": {
+						"env": "prod-4goeo77t6a540242"
+					},
+					"path": "api/user/getRelations/1/2",
+					"header": {
+						"X-WX-OPENID": getApp().globalData.openId,
+						"X-WX-SERVICE": "express-13zt",
+						"content-type": "application/json"
+					},
+					"method": "GET",
+				}).then((res)=>{
+					console.log("relation",res)
+					for(let i=0;i<res.data.data.length;i++){
+						let temp={}
+						temp.id=res.data.data[i].id
+						temp.subject=res.data.data[i].subject
+						temp.grade=res.data.data[i].grade
+						if(res.data.data[i].type==0){
+							temp.type="长期辅导"
+						}else if(res.data.data[i].type==1){
+							temp.type="短期辅导"
+						}
+						if(res.data.data[i].parentFeedback){
+							temp.feedback=1
+							temp.feedback_detail=res.data.data[i].parentFeedback
+						}else{
+							temp.feedback=0
+							temp.feedback_detail=""
+						}
+						that.platformExperience.push(temp)
+					}
+				})
+			},
+			alertRegist() {
+				if (this.isRegist) {
+
+				} else {
+					uni.showToast({
+						title: '请先注册',
+						icon: 'error',
+						duration: 2000
+					})
+					setTimeout(() => {
+						uni.navigateTo({
+							url: '/pages/editInfo/regist'
+						})
+					}, 2000)
+				}
+			},
 			feedback(i) {
 				if (i == 0) {
 					return require('@/assets/icon/feedback-green.svg')
-				} else if (i == 1) {
-					return require('@/assets/icon/feedback-blue.svg')
-				} else if (i == 2) {
-					return require('@/assets/icon/feedback-yellow.svg')
-				} else if (i == 3) {
-					return require('@/assets/icon/feedback-red.svg')
+				} 
+				// else if (i == 1) {
+				// 	return require('@/assets/icon/feedback-blue.svg')
+				// } else if (i == 2) {
+				// 	return require('@/assets/icon/feedback-yellow.svg')
+				// } else if (i == 3) {
+				// 	return require('@/assets/icon/feedback-red.svg')
+				// }
+				else{
+					return ''
 				}
 			},
 			convertToChineseNumber(index) {
 				const chineseNumbers = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
 				return chineseNumbers[index];
 			},
-			goEdit(){
-				uni.navigateTo({
-					url: '/pages/editInfo/editInfo'
-				});
+			goEdit() {
+				if(this.isRegist){
+					uni.navigateTo({
+						url: '/pages/editInfo/editInfo'
+					});
+				}
 			}
 		}
 	};
@@ -473,13 +579,15 @@
 		align-items: center;
 		padding-bottom: 10px;
 	}
-	.experience-detail{
+
+	.experience-detail {
 		width: calc(95vw - 20px);
 		display: flex;
 		align-items: center;
 		flex-direction: column;
 	}
-	.experience-item{
+
+	.experience-item {
 		margin-top: 10px;
 		margin-left: 10px;
 		width: calc(95vw - 20px);

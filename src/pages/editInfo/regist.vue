@@ -108,51 +108,6 @@
                     "简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述"]
             };
         },
-        mounted() {
-            let that = this
-            wx.cloud.callContainer({
-                "config": {
-                    "env": "prod-4goeo77t6a540242"
-                },
-                "path": "/api/user/getInfo",
-                "header": {
-                    "X-WX-OPENID": getApp().globalData.openId,
-                    "X-WX-SERVICE": "express-13zt",
-                    "content-type": "application/json"
-                },
-                "method": "GET",
-            }).then((res) => {
-                if (res.data.statusCode) {
-                    console.log(res)
-                    that.gender = res.data.data.gender
-                    let subjectsInString = res.data.data.subjects.split("、");
-                    that.subjectList.forEach((subject) => {
-                        if (subjectsInString.includes(subject.name)) {
-                            subject.checked = true;
-                        }
-                    });
-                    if (res.data.data.avatarUrl) {
-                        that.cloudUrl = res.data.data.avatarUrl
-                        wx.cloud.getTempFileURL({
-                            fileList: [{
-                                fileID: res.data.data.avatarUrl
-                            }]
-                        }).then(res => {
-                            console.log(res.fileList)
-                            that.imgUrl = res.fileList[0].tempFileURL
-                        })
-                    }
-                    that.name = res.data.data.name
-                    that.score = res.data.data.gaokao
-                    that.phone = res.data.data.phone
-                    that.school = res.data.data.school
-                    that.major = res.data.data.major
-                    that.grade = res.data.data.grade
-                    that.profile = res.data.data.profile
-                    that.experience = res.data.data.experience
-                }
-            })
-        },
         methods: {
             onfocus() {
                 this.sysScroll = "overflow-y:hidden;"
@@ -244,7 +199,7 @@
                     "config": {
                         "env": "prod-4goeo77t6a540242"
                     },
-                    "path": "/api/user/update",
+                    "path": "/api/user/add",
                     "header": {
                         "X-WX-OPENID": getApp().globalData.openId,
                         "X-WX-SERVICE": "express-13zt",
@@ -266,21 +221,12 @@
                     }
                 }).then((res) => {
                     console.log(res)
-                    if (res.statusCode == 201) {
+                    if (res.statusCode == 200) {
                         uni.showToast({
-                            title: '修改成功',
+                            title: '注册成功',
                             icon: 'success',
                             duration: 2000
                         })
-                        let pages = getCurrentPages(); // 当前页面
-                        let beforePage = pages[pages.length - 2]; // 上一页
-                        uni.navigateBack({
-                            success: function () {
-                                console.log(beforePage)
-
-                                beforePage.onLoad(); 
-                            }
-                        });
                     } else {
                         uni.showToast({
                             title: res.data.message,

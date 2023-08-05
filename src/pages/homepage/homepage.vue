@@ -2,12 +2,13 @@
     <div class="container">
         <!-- 主页面和用户页面 -->
         <div class="content" v-show="currentTab==='home'">
-            <Home @showScreen="showScreenPop" style="overflow:hidden;" />
+            <Home @showScreen="showScreenPop" style="overflow:hidden;" ref="home" />
         </div>
-        <div class="content" v-show="currentTab==='user'">
-            <User style="overflow: hidden;"/>
+        <div class="content" v-show="currentTab==='user'" >
+            <User style="overflow: hidden;" ref="user" />
         </div>
-        <ScreenPop v-if="showingScreenPop" style="z-index: 2000; overflow: hidden;" @closeScreen="closeScreenPop"/>
+        <ScreenPop v-if="showingScreenPop" style="z-index: 2000; overflow: hidden;" @closeScreen="closeScreenPop"
+            @screen="setScreen" />
         <!-- 底部栏 -->
         <div class="tab-bar">
             <div @click="switchTab('home')" class="tab-item">
@@ -41,23 +42,31 @@
                 showingScreenPop: false,
             };
         },
+        onLoad(){
+            this.refreshUser();
+        },
         methods: {
             switchTab(tab) {
                 this.currentTab = tab;
             },
-            showScreenPop(){
+            showScreenPop() {
                 this.showingScreenPop = true;
             },
-            closeScreenPop(){
+            closeScreenPop() {
                 this.showingScreenPop = false;
+            },
+            setScreen(data, city, latitude, longitude) {
+                this.$refs.home.goScreen(data, city, latitude, longitude);
+                this.showingScreenPop = false;
+            },
+            refreshUser(){
+                this.$refs.user.refresh();
             }
         },
     };
 </script>
 
-<style lang="postcss" scoped> 
-
-
+<style lang="postcss" scoped>
     .container {
         display: flex;
         flex-direction: column;
@@ -101,6 +110,4 @@
         width: 8px;
         height: 3px;
     }
-
-
 </style>

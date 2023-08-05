@@ -1,9 +1,9 @@
 <template>
-    <div class="card" @click="goDetail(propsData.id)">
+    <div class="card" @click="goDetail()">
         <div class="title">{{ propsData.title }}</div>
         <div class="id">#{{ propsData.id }}</div>
-        <div class="position">{{ propsData.position }}&nbsp;&nbsp;距你{{ propsData.distance }}km</div>
-        <div class="time">{{ propsData.time }}</div>
+        <div class="position">{{ propsData.position }}&nbsp;&nbsp;距你{{ propsData.distance }}km&nbsp;&nbsp;{{ propsData.time }}天前发布</div>
+        <!-- <div class="time">{{ propsData.time }}天前发布</div> -->
         <div class="detail">上课时间：{{ propsData.detail }}</div>
         <div class="compete" v-if="propsData.compete === 0">
             <div class="compete-font-red">竞争激烈</div>
@@ -38,9 +38,9 @@
             }
         },
         methods: {
-            goDetail(id) {
+            goDetail() {
                 uni.navigateTo({
-                    url: `/pages/detail/detail?id=${id}`
+                    url: `/pages/detail/detail?id=${this.propsData.id}&position=${this.propsData.position}&title=${this.propsData.title}&distance=${this.propsData.distance}&time=${this.propsData.time}&detail=${this.propsData.detail}&detail2=${this.propsData.detail2}&compete=${this.propsData.compete}&price=${this.propsData.price}&subject=${this.propsData.subject}&studentGrade=${this.propsData.studentGrade}&classType=${this.propsData.classType}&studentGrade=${this.propsData.studentGrade}`
                 })
             }
         }
@@ -86,7 +86,7 @@
         position: absolute;
         top: 48px;
         left: 5%;
-        width: 145px;
+        width: 90%;
         height: 20px;
         font-size: 14px;
         font-weight: 300;
