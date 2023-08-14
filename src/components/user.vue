@@ -118,27 +118,20 @@
 				windowHeight: 0,
 				title: 'Hello11',
 				avator: 'https://img1.baidu.com/it/u=165825062,3994374384&fm=253&app=138&size=w931&n=0&f=PNG&fmt=auto?sec=1690304400&t=baf679f3f5ad4fc33622077bdf59489b',
-				username: 'XXX',
+				username: '请求失败',
 				reputationScore: 90,
 				basicInformation: {
 					"id": 0,
 					"gender": "男",
 					"phone": "17777777777",
 					"score": "720",
-					"school": "天津大学",
+					"school": "北京大学",
 					"major": "计算机科学与技术",
 					"grade": "大一",
 					"subject": "数学",
 					"profile": "个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介"
 				},
-				platformExperience: [ {
-					"id": "837222",
-					"subject": "英语、数学",
-					"grade": "初中",
-					"type": "长期辅导",
-					"feedback": 0,
-					"feedback_detail":""
-				}],
+				platformExperience: [],
 				experience: ["简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述",
 					"简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述"]
 			}
@@ -235,23 +228,33 @@
 					},
 					"method": "GET",
 				}).then((res)=>{
+					that.platformExperience = [],
 					console.log("relation",res)
-					for(let i=0;i<res.data.data.length;i++){
-						let temp={}
-						temp.id=res.data.data[i].id
-						temp.subject=res.data.data[i].subject
-						temp.grade=res.data.data[i].grade
-						if(res.data.data[i].type==0){
-							temp.type="长期辅导"
-						}else if(res.data.data[i].type==1){
-							temp.type="短期辅导"
+					for (let i = 0; i < res.data.data.data.length; i++) {
+						let temp = {}
+						temp.id = res.data.data.data[i].order.id
+						const subjects = ["语文", "数学", "英语", "物理", "化学", "生物", "政治", "历史", "地理", "技术", "素质及其他"];
+						temp.subject = Array.from(res.data.data.data[i].order.subject).map(i => subjects[parseInt(i)]).join('、');
+						let gradeMap = {
+                                '0': '小学低年级',
+                                '1': '小学高年级',
+                                '2': '初中',
+                                '3': '高中',
+                                '4': '成人',
+                                '5': '其他',
+                            }
+						temp.grade = gradeMap[res.data.data.data[i].order.studentGrade]
+						if (res.data.data.data[i].order.classType == 0) {
+							temp.type = "长期辅导"
+						} else if (res.data.data.data[i].order.classType == 1) {
+							temp.type = "短期辅导"
 						}
-						if(res.data.data[i].parentFeedback){
-							temp.feedback=1
-							temp.feedback_detail=res.data.data[i].parentFeedback
-						}else{
-							temp.feedback=0
-							temp.feedback_detail=""
+						if (res.data.data.data[i].parentFeedback) {
+							temp.feedback = 1
+							temp.feedback_detail = res.data.data.data[i].parentFeedback
+						} else {
+							temp.feedback = 0
+							temp.feedback_detail = ""
 						}
 						that.platformExperience.push(temp)
 					}
@@ -261,16 +264,9 @@
 				if (this.isRegist) {
 
 				} else {
-					uni.showToast({
-						title: '请先注册',
-						icon: 'error',
-						duration: 2000
+					uni.navigateTo({
+						url: '/pages/editInfo/regist'
 					})
-					setTimeout(() => {
-						uni.navigateTo({
-							url: '/pages/editInfo/regist'
-						})
-					}, 2000)
 				}
 			},
 			feedback(i) {

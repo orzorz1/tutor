@@ -88,6 +88,13 @@
         components: {
 
         },
+        onLoad() {
+            uni.showToast({
+						title: '请先注册',
+						icon: 'error',
+						duration: 2000
+					})
+        },
         data() {
             return {
                 sysScroll: "",
@@ -95,7 +102,7 @@
                 imgUrl: '',
                 cloudUrl: '',
                 name: '',
-                gender: 0,
+                gender: '0',
                 phone: '',
                 score: '',
                 school: '',
@@ -104,8 +111,7 @@
                 subjectList: [{ name: '语文', checked: false }, { name: '数学', checked: false }, { name: '英语', checked: false }, { name: '物理', checked: false },
                 { name: '化学', checked: false }, { name: '政史', checked: false }, { name: '生地', checked: false }],
                 profile: '',
-                experience: ["简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述",
-                    "简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述"]
+                experience: []
             };
         },
         methods: {
@@ -227,6 +233,15 @@
                             icon: 'success',
                             duration: 2000
                         })
+                        let pages = getCurrentPages(); // 当前页面
+                        let beforePage = pages[pages.length - 2]; // 上一页
+                        uni.navigateBack({
+                            success: function () {
+                                console.log(beforePage)
+
+                                beforePage.onLoad(); 
+                            }
+                        });
                     } else {
                         uni.showToast({
                             title: res.data.message,

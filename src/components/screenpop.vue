@@ -346,14 +346,15 @@
                         if (that.latitude != res.latitude || that.longitude != res.longitude) {
                             geocoder(res.latitude, res.longitude).then(res => {
                                 console.log(res); // 地址
+                                that.city = res.address_component.city
                             }).catch(err => {
                                 // handle error
                                 console.log(err);
                             });
-                            console.log('位置名称：' + res.name);
-                            console.log('详细地址：' + res.address);
-                            console.log('纬度：' + res.latitude);
-                            console.log('经度：' + res.longitude);
+                            // console.log('位置名称：' + res.name);
+                            // console.log('详细地址：' + res.address);
+                            // console.log('纬度：' + res.latitude);
+                            // console.log('经度：' + res.longitude);
                             // console.log(getAddressBean(res.address, res.name));
                             that.latitude = res.latitude;
                             that.longitude = res.longitude;

@@ -145,7 +145,7 @@
                 byEnd: false,
                 menuButton: {},
                 windowHeight: 0,
-                position: '天津',
+                position: '',
                 sortord: 0, //0:综合排序 1:距离升序 2:距离降序 3:薪资升序 4:薪资降序 5:竞争升序 6:竞争降序 7:时间升序 8:时间降序
                 isScreen: false,
                 screenData: {},
@@ -188,7 +188,6 @@
         onReady() {
             this.cards = []
             const that = this;
-            this.loadNew()
             this.getLocationAndLoad()
         },
 
@@ -260,9 +259,9 @@
                 let screenSubject = this.screenData.subject ? Array.from(this.screenData.subject) : []
                 let screenGrade = this.screenData.studentGrade ? Array.from(this.screenData.studentGrade) : []
                 console.log('loadNew', {
-                    "latitude": parseInt(0),//this.latitude,
-                    "longitude": parseInt(0),//this.longitude,
-                    "city": "北京",//this.position,
+                    "latitude": this.latitude,
+                    "longitude": this.longitude,
+                    "city": this.position,
                     "rankType": sortType,
                     "feeRange": this.screenData.wage,
                     "classType": this.screenData.type,
@@ -284,9 +283,9 @@
                         },
                         "method": "POST",
                         "data": {
-                            "latitude": 1,//this.latitude,
-                            "longitude": 1,//this.longitude,
-                            "city": "北京",//this.position,
+                            "latitude": this.latitude,
+                            "longitude": this.longitude,
+                            "city": this.position,
                             "rankType": sortType,
                             "feeRange": this.screenData.wage,
                             "classType": this.screenData.type,
@@ -339,9 +338,10 @@
                                 compete: compete,
                                 price: item.fee,
                                 subject: subject,
-                                studentGrade: genderMap[item.studentGender],
+                                studentGender: genderMap[item.studentGender],
                                 classType: typeMap[item.classType],
                                 studentGrade: gradeMap[item.studentGrade],
+                                orderProfit: item.orderProfit
                             })
                         }
                     })

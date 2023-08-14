@@ -29,6 +29,7 @@
                     ￥<span style="font-size:24px;">{{ price }}</span>/小时
                 </div>
             </div>
+            <div class="detail">服务费：￥{{ orderProfit }}</div>
             <div class="detail">学生性别：{{ studentGender }}</div>
             <div class="detail">学生年级：{{ studentGrade }}</div>
             <div class="detail">课程类型：{{ classType }}</div>
@@ -62,9 +63,10 @@
                 compete: 0,
                 price: 0,
                 subject: '',
-                studentGrade: '',
+                studentGender: '',
                 classType: '',
-                studentGrade: ''
+                studentGrade: '',
+                orderProfit:''
             }
         },
         onLoad(o) {
@@ -78,9 +80,10 @@
             this.compete = o.compete
             this.price = o.price
             this.subject = o.subject
-            this.studentGrade = o.studentGrade
+            this.studentGender = o.studentGender
             this.classType = o.classType
             this.studentGrade = o.studentGrade
+            this.orderProfit = o.orderProfit
         },
         methods: {
             sendResume() {

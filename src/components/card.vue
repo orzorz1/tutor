@@ -40,7 +40,7 @@
         methods: {
             goDetail() {
                 uni.navigateTo({
-                    url: `/pages/detail/detail?id=${this.propsData.id}&position=${this.propsData.position}&title=${this.propsData.title}&distance=${this.propsData.distance}&time=${this.propsData.time}&detail=${this.propsData.detail}&detail2=${this.propsData.detail2}&compete=${this.propsData.compete}&price=${this.propsData.price}&subject=${this.propsData.subject}&studentGrade=${this.propsData.studentGrade}&classType=${this.propsData.classType}&studentGrade=${this.propsData.studentGrade}`
+                    url: `/pages/detail/detail?id=${this.propsData.id}&position=${this.propsData.position}&title=${this.propsData.title}&distance=${this.propsData.distance}&time=${this.propsData.time}&detail=${this.propsData.detail}&detail2=${this.propsData.detail2}&compete=${this.propsData.compete}&price=${this.propsData.price}&subject=${this.propsData.subject}&studentGender=${this.propsData.studentGender}&classType=${this.propsData.classType}&studentGrade=${this.propsData.studentGrade}&orderProfit=${this.propsData.orderProfit}`
                 })
             }
         }
