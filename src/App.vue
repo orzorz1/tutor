@@ -4,6 +4,7 @@
         mpType: 'app',
         globalData: {
             isRegist: false,
+            isReadPrivacy: false,
             openId: '',
             userId: ''
         },

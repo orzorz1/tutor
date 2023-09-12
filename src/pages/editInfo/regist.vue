@@ -71,32 +71,31 @@
                         type="text" v-model="experience[index]" class="textarea-profile" style="height: 60px;"
                         @focus="onfocus" @blur="onblur"></textarea>
                 </div>
-                <div class="line"></div>
+                <div class="line"></div>s
             </div>
             <div class="addEXP-button" @click="addExp" v-if="experience.length<10">
                 <div>添加经历</div>
             </div>
         </div>
+        <!-- <div class="privacy">请先阅读<p style="display: inline; color:#EEA849; margin-left: 5px;" @click="privacy">隐私政策</p>
+        </div> -->
         <div class="send-button" @click="submit">
             <div>完成填写</div>
         </div>
+
     </div>
 </template>
 
 <script>
     export default {
         components: {
-
         },
         onLoad() {
-            uni.showToast({
-						title: '请先注册',
-						icon: 'error',
-						duration: 2000
-					})
+
         },
         data() {
             return {
+                isReading: false,
                 sysScroll: "",
                 imgPath: '',
                 imgUrl: '',
@@ -197,6 +196,8 @@
                 });
             },
             submit() {
+                // let m = getApp().globalData.isReadPrivacy;
+                // if(m){
                 const selectedSubjects = this.subjectList
                     .filter(subject => subject.checked === true)
                     .map(subject => subject.name)
@@ -227,19 +228,21 @@
                     }
                 }).then((res) => {
                     console.log(res)
-                    if (res.statusCode == 200) {
+                    if (res.statusCode == 201) {
                         uni.showToast({
                             title: '注册成功',
                             icon: 'success',
                             duration: 2000
                         })
-                        let pages = getCurrentPages(); // 当前页面
-                        let beforePage = pages[pages.length - 2]; // 上一页
+                        let pages = getCurrentPages();
+                        console.log(pages)
+                        let targetPage = pages[pages.length - 3]; // 上上页
                         uni.navigateBack({
+                            delta: 2,  // 回退两页
                             success: function () {
-                                console.log(beforePage)
-
-                                beforePage.onLoad(); 
+                                if (targetPage && typeof targetPage.onLoad === 'function') {
+                                    targetPage.onLoad();
+                                }
                             }
                         });
                     } else {
@@ -250,6 +253,18 @@
                         })
                     }
                 })
+                // }else{
+                //     uni.showToast({
+                //         title: '请阅读并同意隐私政策',
+                //         icon: 'none',
+                //         duration: 2000
+                //     })
+                // }
+            },
+            privacy() {
+                uni.navigateTo({
+                    url: '/pages/privacy/privacy'
+                });
             }
         },
     };
@@ -397,5 +412,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .privacy {
+        margin-top: 12px;
+        font-size: 12px;
     }
 </style>

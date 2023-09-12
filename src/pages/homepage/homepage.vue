@@ -4,7 +4,7 @@
         <div class="content" v-show="currentTab==='home'">
             <Home @showScreen="showScreenPop" style="overflow:hidden;" ref="home" />
         </div>
-        <div class="content" v-show="currentTab==='user'" >
+        <div class="content" v-show="currentTab==='user'">
             <User style="overflow: hidden;" ref="user" />
         </div>
         <ScreenPop v-if="showingScreenPop" style="z-index: 2000; overflow: hidden;" @closeScreen="closeScreenPop"
@@ -47,7 +47,17 @@
         },
         methods: {
             switchTab(tab) {
-                this.currentTab = tab;
+                if(tab=='home'){
+                    this.currentTab = tab;
+                }else{
+                    if(this.$refs.user.isRegist){
+                        this.currentTab = tab;
+                    }else{
+                        uni.navigateTo({
+							url: '/pages/goRegist/goRegist'
+						})
+                    }
+                }
             },
             showScreenPop() {
                 this.showingScreenPop = true;

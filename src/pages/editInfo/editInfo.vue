@@ -104,8 +104,7 @@
                 subjectList: [{ name: '语文', checked: false }, { name: '数学', checked: false }, { name: '英语', checked: false }, { name: '物理', checked: false },
                 { name: '化学', checked: false }, { name: '政史', checked: false }, { name: '生地', checked: false }],
                 profile: '',
-                experience: ["简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述",
-                    "简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述"]
+                experience: []
             };
         },
         mounted() {
@@ -272,15 +271,17 @@
                             icon: 'success',
                             duration: 2000
                         })
-                        let pages = getCurrentPages(); // 当前页面
-                        let beforePage = pages[pages.length - 2]; // 上一页
-                        uni.navigateBack({
-                            success: function () {
-                                console.log(beforePage)
+                        setTimeout(function () {
+                            let pages = getCurrentPages(); // 当前页面
+                            let beforePage = pages[pages.length - 2]; // 上一页
+                            uni.navigateBack({
+                                success: function () {
+                                    console.log(beforePage)
 
-                                beforePage.onLoad(); 
-                            }
-                        });
+                                    beforePage.onLoad();
+                                }
+                            });
+                        }, 2000)
                     } else {
                         uni.showToast({
                             title: res.data.message,

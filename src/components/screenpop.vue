@@ -6,148 +6,154 @@
                 <div class="top-font">全部筛选</div>
                 <img class="close-icon" :src="require('@/assets/icon/close.svg')" @click="closeScreen">
             </div>
-            <div class="screen-distance">
-                <div class="distance-font">距离</div>
-                <div class="distance-position">
-                    <img src="@/assets/icon/position-gray.svg" class="position-icon">
-                    <div class="position-current">{{ currentPosition }}</div>
-                    <div class="position-modify" @click="changeLocation">修改</div>
+            <div style="display:flex; align-items: center; flex-direction: column; overflow-y: scroll;">
+                <div class="screen-distance">
+                    <div class="distance-font">距离</div>
+                    <div class="distance-position">
+                        <img src="@/assets/icon/position-gray.svg" class="position-icon">
+                        <div class="position-current">{{ currentPosition }}</div>
+                        <div class="position-modify" @click="changeLocation">修改</div>
+                    </div>
                 </div>
-            </div>
-            <div class="select">
-                <div :class="[screenData.distance[0] ? 'button-active' : 'button']" @click="setscreenData(0,0)">
-                    <p>不限</p>
+                <view style="width: 95%; display: flex; align-items: center; margin-top: 10px;">
+                    <slider style="flex:1" ref="slider" value="51" @changing="sliderChange" min="1" max="52"  activeColor="#ED8E45"/>
+                    <div style="margin-left: 5px; font-size: 14px; color: #666666;" >{{sliderValue}}</div>
+                </view>
+                <!-- <div class="select">
+                    <div :class="[screenData.distance[0] ? 'button-active' : 'button']" @click="setscreenData(0,0)">
+                        <p>不限</p>
+                    </div>
+                    <div :class="[screenData.distance[1] ? 'button-active' : 'button']" @click="setscreenData(0,1)">
+                        <p>1km内</p>
+                    </div>
+                    <div :class="[screenData.distance[2] ? 'button-active' : 'button']" @click="setscreenData(0,2)">
+                        <p>2km内</p>
+                    </div>
+                </div> -->
+                <div class="screen-distance">
+                    <div class="distance-font">类型</div>
                 </div>
-                <div :class="[screenData.distance[1] ? 'button-active' : 'button']" @click="setscreenData(0,1)">
-                    <p>1km内</p>
+                <div class="select">
+                    <div :class="[screenData.type[0] ? 'button-active' : 'button']" @click="setscreenData(1,0)">
+                        <p>不限</p>
+                    </div>
+                    <div :class="[screenData.type[1] ? 'button-active' : 'button']" @click="setscreenData(1,1)">
+                        <p>长期</p>
+                    </div>
+                    <div :class="[screenData.type[2] ? 'button-active' : 'button']" @click="setscreenData(1,2)">
+                        <p>短期</p>
+                    </div>
                 </div>
-                <div :class="[screenData.distance[2] ? 'button-active' : 'button']" @click="setscreenData(0,2)">
-                    <p>2km内</p>
+                <div class="screen-distance">
+                    <div class="distance-font">时薪</div>
                 </div>
-            </div>
-            <div class="screen-distance">
-                <div class="distance-font">类型</div>
-            </div>
-            <div class="select">
-                <div :class="[screenData.type[0] ? 'button-active' : 'button']" @click="setscreenData(1,0)">
-                    <p>不限</p>
+                <div class="select2">
+                    <div :class="[screenData.wage[0] ? 'button-active' : 'button']" @click="setscreenData(2,0)">
+                        <p>不限</p>
+                    </div>
+                    <div :class="[screenData.wage[1] ? 'button-active' : 'button']" @click="setscreenData(2,1)">
+                        <p>100以下</p>
+                    </div>
+                    <div :class="[screenData.wage[2] ? 'button-active' : 'button']" @click="setscreenData(2,2)">
+                        <p>101-120</p>
+                    </div>
+                    <div :class="[screenData.wage[3] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(2,3)">
+                        <p>121-140</p>
+                    </div>
+                    <div :class="[screenData.wage[4] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(2,4)">
+                        <p>141-160</p>
+                    </div>
+                    <div :class="[screenData.wage[5] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(2,5)">
+                        <p>161以上</p>
+                    </div>
                 </div>
-                <div :class="[screenData.type[1] ? 'button-active' : 'button']" @click="setscreenData(1,1)">
-                    <p>长期</p>
+                <div class="screen-distance">
+                    <div class="distance-font">年级</div>
                 </div>
-                <div :class="[screenData.type[2] ? 'button-active' : 'button']" @click="setscreenData(1,2)">
-                    <p>短期</p>
+                <div class="select2">
+                    <div :class="[screenData.grade[0] ? 'button-active' : 'button']" @click="setscreenData(3,0)">
+                        <p>不限</p>
+                    </div>
+                    <div :class="[screenData.grade[1] ? 'button-active' : 'button']" @click="setscreenData(3,1)">
+                        <p>小低年级</p>
+                    </div>
+                    <div :class="[screenData.grade[2] ? 'button-active' : 'button']" @click="setscreenData(3,2)">
+                        <p>小高年级</p>
+                    </div>
+                    <div :class="[screenData.grade[3] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(3,3)">
+                        <p>初中</p>
+                    </div>
+                    <div :class="[screenData.grade[4] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(3,4)">
+                        <p>高中</p>
+                    </div>
+                    <div :class="[screenData.grade[5] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(3,5)">
+                        <p>成人</p>
+                    </div>
                 </div>
-            </div>
-            <div class="screen-distance">
-                <div class="distance-font">时薪</div>
-            </div>
-            <div class="select2">
-                <div :class="[screenData.wage[0] ? 'button-active' : 'button']" @click="setscreenData(2,0)">
-                    <p>不限</p>
+                <div class="screen-distance">
+                    <div class="distance-font">科目</div>
                 </div>
-                <div :class="[screenData.wage[1] ? 'button-active' : 'button']" @click="setscreenData(2,1)">
-                    <p>100以下</p>
+                <div class="select2" style="height: 145px;">
+                    <div :class="[screenData.subject[0] ? 'button-active' : 'button']" @click="setscreenData(4,0)">
+                        <p>不限</p>
+                    </div>
+                    <div :class="[screenData.subject[1] ? 'button-active' : 'button']" @click="setscreenData(4,1)">
+                        <p>语文</p>
+                    </div>
+                    <div :class="[screenData.subject[2] ? 'button-active' : 'button']" @click="setscreenData(4,2)">
+                        <p>数学</p>
+                    </div>
+                    <div :class="[screenData.subject[3] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(4,3)">
+                        <p>英语</p>
+                    </div>
+                    <div :class="[screenData.subject[4] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(4,4)">
+                        <p>物理</p>
+                    </div>
+                    <div :class="[screenData.subject[5] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(4,5)">
+                        <p>化学</p>
+                    </div>
+                    <div :class="[screenData.subject[6] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(4,6)">
+                        <p>生物</p>
+                    </div>
+                    <div :class="[screenData.subject[7] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(4,7)">
+                        <p>政治</p>
+                    </div>
+                    <div :class="[screenData.subject[8] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(4,8)">
+                        <p>历史</p>
+                    </div>
+                    <div :class="[screenData.subject[9] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(4,9)">
+                        <p>地理</p>
+                    </div>
+                    <div :class="[screenData.subject[10] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(4,10)">
+                        <p>技术</p>
+                    </div>
+                    <div :class="[screenData.subject[11] ? 'button-active' : 'button']" style="margin-top: 10px;"
+                        @click="setscreenData(4,11)">
+                        <p>素质及其他</p>
+                    </div>
+                    <div class="button-none"></div>
                 </div>
-                <div :class="[screenData.wage[2] ? 'button-active' : 'button']" @click="setscreenData(2,2)">
-                    <p>101-120</p>
-                </div>
-                <div :class="[screenData.wage[3] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(2,3)">
-                    <p>121-140</p>
-                </div>
-                <div :class="[screenData.wage[4] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(2,4)">
-                    <p>141-160</p>
-                </div>
-                <div :class="[screenData.wage[5] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(2,5)">
-                    <p>161以上</p>
-                </div>
-            </div>
-            <div class="screen-distance">
-                <div class="distance-font">年级</div>
-            </div>
-            <div class="select2">
-                <div :class="[screenData.grade[0] ? 'button-active' : 'button']" @click="setscreenData(3,0)">
-                    <p>不限</p>
-                </div>
-                <div :class="[screenData.grade[1] ? 'button-active' : 'button']" @click="setscreenData(3,1)">
-                    <p>小低年级</p>
-                </div>
-                <div :class="[screenData.grade[2] ? 'button-active' : 'button']" @click="setscreenData(3,2)">
-                    <p>小高年级</p>
-                </div>
-                <div :class="[screenData.grade[3] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(3,3)">
-                    <p>初中</p>
-                </div>
-                <div :class="[screenData.grade[4] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(3,4)">
-                    <p>高中</p>
-                </div>
-                <div :class="[screenData.grade[5] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(3,5)">
-                    <p>成人</p>
-                </div>
-            </div>
-            <div class="screen-distance">
-                <div class="distance-font">科目</div>
-            </div>
-            <div class="select2" style="height: 145px;">
-                <div :class="[screenData.subject[0] ? 'button-active' : 'button']" @click="setscreenData(4,0)">
-                    <p>不限</p>
-                </div>
-                <div :class="[screenData.subject[1] ? 'button-active' : 'button']" @click="setscreenData(4,1)">
-                    <p>语文</p>
-                </div>
-                <div :class="[screenData.subject[2] ? 'button-active' : 'button']" @click="setscreenData(4,2)">
-                    <p>数学</p>
-                </div>
-                <div :class="[screenData.subject[3] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(4,3)">
-                    <p>英语</p>
-                </div>
-                <div :class="[screenData.subject[4] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(4,4)">
-                    <p>物理</p>
-                </div>
-                <div :class="[screenData.subject[5] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(4,5)">
-                    <p>化学</p>
-                </div>
-                <div :class="[screenData.subject[6] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(4,6)">
-                    <p>生物</p>
-                </div>
-                <div :class="[screenData.subject[7] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(4,7)">
-                    <p>政治</p>
-                </div>
-                <div :class="[screenData.subject[8] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(4,8)">
-                    <p>历史</p>
-                </div>
-                <div :class="[screenData.subject[9] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(4,9)">
-                    <p>地理</p>
-                </div>
-                <div :class="[screenData.subject[10] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(4,10)">
-                    <p>技术</p>
-                </div>
-                <div :class="[screenData.subject[11] ? 'button-active' : 'button']" style="margin-top: 10px;"
-                    @click="setscreenData(4,11)">
-                    <p>素质及其他</p>
-                </div>
-                <div class="button-none"></div>
-            </div>
-            <div class="bottom-button">
-                <div class="bottom-button-white" @click="reset">
-                    <p>重置</p>
-                </div>
-                <div class="bottom-button-orange" @click="screen">
-                    <p>筛选</p>
+                <div class="bottom-button">
+                    <div class="bottom-button-white" @click="reset">
+                        <p>重置</p>
+                    </div>
+                    <div class="bottom-button-orange" @click="screen">
+                        <p>筛选</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -194,6 +200,7 @@
                 currentPosition: "天津大学北洋园校区",
                 city: "天津市",
                 screenData: {
+                    "distanceSlider":99999999,
                     "distance": [true, false, false], "type": [true, false, false],
                     "wage": [true, false, false, false, false, false],
                     "grade": [true, false, false, false, false, false],
@@ -201,6 +208,8 @@
                 },
                 latitude: 0,
                 longitude: 0,
+                sliderValue: "不限",
+                distance:0,
             }
         },
         onReady() {
@@ -229,6 +238,15 @@
 
         },
         methods: {
+            sliderChange(e) {
+                if(e.detail.value > 50){
+                    this.sliderValue = '不限'
+                    this.screenData.distanceSlider = 99999999
+                }else{
+                    this.sliderValue = e.detail.value + 'km'
+                    this.screenData.distanceSlider = e.detail.value * 1000
+                }
+            },
             setscreenData(a, b) {
                 if (a == 0) {
                     for (let i = 0; i < 3; i++) {
@@ -328,6 +346,7 @@
             },
             reset() {
                 this.screenData = {
+                    "distanceSlider": 99999999,
                     "distance": [true, false, false], "type": [true, false, false],
                     "wage": [true, false, false, false, false, false],
                     "grade": [true, false, false, false, false, false],
@@ -389,7 +408,7 @@
         background-color: #fff;
         position: fixed;
         bottom: 0;
-        height: 726px;
+        height: 85vh;
         width: 100%;
         border-radius: 16px 16px 0 0;
         display: flex;
@@ -425,7 +444,8 @@
 
     .screen-distance {
         margin-top: 15px;
-        width: 353px;
+
+        width: 95%;
         height: 22px;
         display: flex;
         align-items: center;
@@ -465,7 +485,7 @@
 
     .select {
         margin-top: 10px;
-        width: 353px;
+        width: 95%;
         height: 32px;
         display: flex;
         align-items: center;
@@ -473,7 +493,7 @@
     }
 
     .button {
-        width: 111px;
+        width: 30%;
         height: 28px;
         background-color: #f9f9f9;
         display: flex;
@@ -484,7 +504,7 @@
     }
 
     .button-active {
-        width: 111px;
+        width: 30%;
         height: 28px;
         background: linear-gradient(to right, #F46B45, #EEA849);
         display: flex;
@@ -496,7 +516,7 @@
 
     .select2 {
         margin-top: 10px;
-        width: 353px;
+        width: 95%;
         height: 74px;
         display: flex;
         align-items: center;
@@ -505,21 +525,22 @@
     }
 
     .button-none {
-        width: 111px;
+        width: 30%;
         height: 32px;
     }
 
     .bottom-button {
         margin-top: 20px;
-        width: 353px;
+        width: 95%;
         height: 36px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: calc(env(safe-area-inset-bottom) + 20px);
     }
 
     .bottom-button-white {
-        width: 171px;
+        width: 45%;
         height: 36px;
         background-color: #f9f9f9;
         display: flex;
@@ -530,7 +551,7 @@
     }
 
     .bottom-button-orange {
-        width: 171px;
+        width: 45%;
         height: 36px;
         background: linear-gradient(to right, #F46B45, #EEA849);
         display: flex;

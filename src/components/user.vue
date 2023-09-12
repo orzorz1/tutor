@@ -119,21 +119,20 @@
 				title: 'Hello11',
 				avator: 'https://img1.baidu.com/it/u=165825062,3994374384&fm=253&app=138&size=w931&n=0&f=PNG&fmt=auto?sec=1690304400&t=baf679f3f5ad4fc33622077bdf59489b',
 				username: '请求失败',
-				reputationScore: 90,
+				reputationScore: 100,
 				basicInformation: {
 					"id": 0,
-					"gender": "男",
-					"phone": "17777777777",
-					"score": "720",
-					"school": "北京大学",
-					"major": "计算机科学与技术",
-					"grade": "大一",
-					"subject": "数学",
-					"profile": "个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介"
+					"gender": " ",
+					"phone": " ",
+					"score": " ",
+					"school": " ",
+					"major": " ",
+					"grade": " ",
+					"subject": " ",
+					"profile": " "
 				},
 				platformExperience: [],
-				experience: ["简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述",
-					"简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述简述"]
+				experience: []
 			}
 		},
 		computed: {
@@ -162,10 +161,11 @@
 				}
 			},
 		},
-
 		mounted() {
 			this.menuButton = uni.getMenuButtonBoundingClientRect();
 			this.windowHeight = uni.getSystemInfoSync();
+		},
+		onpageshow(){
 			this.refresh()
 
 		},

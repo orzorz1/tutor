@@ -1,5 +1,6 @@
 {
-	"pages": [ 
+	"pages": [   
+            
 		{			
 			"path": "pages/homepage/homepage",
 			"style": {
@@ -16,12 +17,26 @@
 			}
 		},
 		{			
+			"path": "pages/goRegist/goRegist",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"disableScroll": true 
+			}
+		},  
+		{			
+			"path": "pages/privacy/privacy",
+			"style": {
+				"navigationBarTitleText": "隐私政策",
+				"disableScroll": true 
+			}
+		},
+		{			
 			"path": "pages/editInfo/regist",
 			"style": {
 				"navigationBarTitleText": "注册",
 				"disableScroll": true 
 			}
-		},
+		},    
 		{			
 			"path": "pages/detail/detail",
 			"style": {

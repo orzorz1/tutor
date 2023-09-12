@@ -390,13 +390,15 @@
                 this.cards = []
                 this.isScreen = true;
                 this.screenData.data = data
-                if (data.distance[0]) {
-                    this.screenData.distance = 999999;
-                } else if (data.distance[1]) {
-                    this.screenData.distance = 1000;
-                } else if (data.distance[2]) {
-                    this.screenData.distance = 2000;
-                }
+                this.screenData.distance = data.distanceSlider
+                console.log(data)
+                // if (data.distance[0]) {
+                //     this.screenData.distance = 999999;
+                // } else if (data.distance[1]) {
+                //     this.screenData.distance = 1000;
+                // } else if (data.distance[2]) {
+                //     this.screenData.distance = 2000;
+                // }
                 if (data.type[0]) {
                     this.screenData.type = null;
                 } else if (data.type[1]) {
