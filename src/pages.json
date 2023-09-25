@@ -1,12 +1,6 @@
 {
 	"pages": [   
-		{			
-			"path": "pages/goRegist/goRegist",
-			"style": {
-				"navigationBarTitleText": "注册",
-				"disableScroll": true 
-			}
-		},   
+ 
 		{			
 			"path": "pages/homepage/homepage",
 			"style": {
@@ -22,7 +16,13 @@
 				"disableScroll": true 
 			}
 		},
-
+		{			
+			"path": "pages/goRegist/goRegist",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"disableScroll": true 
+			}
+		},  
 		{			
 			"path": "pages/privacy/privacy",
 			"style": {

@@ -1,6 +1,7 @@
 <template>
     <div class="main">
         <img src="../../assets/img/icon.jpg" class="center_img">
+        <div class="text">为了为您提供更好的服务，请先注册</div>
         <div class="send-button" @click="goRegist">
             <div>注册</div>
         </div>
@@ -36,7 +37,7 @@ export default {
             desc1: "感谢您使用轻松选单小程序，您使用本小程序前应当阅井同意",
             urlTitle: "《用户隐私保护指引》",
             desc2: "当您点击同意并开始时用产品服务时，即表示你已理解并同息该条款内容，该条款将对您产生法律约束力。如您拒绝，将无法进入小程序。",
-            innerShow: true,
+            innerShow: false,
             height: 0,
         };
     },
@@ -144,9 +145,12 @@ export default {
     margin-bottom: 150px;
 
 }
-
+.text{
+    margin-top: 50px;
+    font-size: 14px;
+}
 .send-button {
-    margin-top: 60px;
+    margin-top: 10px;
     width: 50%;
     background: linear-gradient(to right, #F46B45, #EEA849);
     height: 36px;
